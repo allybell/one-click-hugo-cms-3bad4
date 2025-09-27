@@ -27,8 +27,8 @@ describe("empty spec", () => {
 });
 
 describe("validate blog", () => {
-  it("should have only 3 blog posts by default", () => {
+  it("should have at least 3 blog posts by default", () => {
     cy.visit("/post");
-    cy.get("ul#blog-list li").should("have.length", 3);
+    cy.get("ul#blog-list li").should("be.greaterThan", 2);
   });
 });

@@ -1,5 +1,8 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
 backend:
-  name: git-gateway
+  name: github
+  repo: allybell/one-click-hugo-cms-3bad4 # Path to your GitHub repository
   branch: main
 
 media_folder: "site/static/img" # Folder where user uploaded files should go
