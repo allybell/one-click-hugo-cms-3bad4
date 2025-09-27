@@ -1,5 +1,6 @@
 [build.environment]
   NETLIFY_USE_YARN = "false"
+  NPM_FLAGS = "--no-legacy-deps"
 
 [build]
   command = "npm run build"
