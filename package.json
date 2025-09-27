@@ -1,8 +1,8 @@
 {
   "name": "one-click-hugo-cms",
   "version": "1.0.0",
-  "description": "Hugo template with Decap CMS ",
-  "repository": "decaporg/one-click-hugo-cms",
+  "description": "Hugo template with sveltiaCMS instead of Decap CMS ",
+  "repository": "allybell/one-click-hugo-cms-3bad4",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src cypress",
@@ -66,7 +66,7 @@
     "@babel/preset-react": "^7.17.12",
     "cypress": "^10.5.0",
     "date-fns": "^2.28.0",
-    "decap-cms-app": "^3.0.2",
+    "help": "^3.0.2",
     "immutable": "^4.1.0",
     "netlify-plugin-cypress": "^2.2.1",
     "react": "^17.0.2",
