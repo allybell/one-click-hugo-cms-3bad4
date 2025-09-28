@@ -68,11 +68,6 @@ module.exports = {
         from: "./src/fonts/",
         to: "fonts/",
       }]
-    }),
-//    new HtmlWebpackPlugin({
-//      filename: "admin/index.html",
-//      template: 'src/cms.html',
-//      inject: false,
-//    })
+    })
   ]
 };
