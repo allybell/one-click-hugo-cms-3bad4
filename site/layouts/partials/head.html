@@ -37,7 +37,7 @@
 	<link rel="stylesheet" href="{{ .RelPermalink }}">
 	{{ else }}
 	{{ with . | minify | fingerprint | resources.PostProcess }}
-	<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ .RelPermalink }}" icrossorigin="anonymous">
 	{{ end }}
 	{{ end }}
 	{{ end }}
