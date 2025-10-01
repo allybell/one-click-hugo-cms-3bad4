@@ -1,18 +1,23 @@
 [build.environment]
   NETLIFY_USE_YARN = "false"
   NPM_FLAGS = "--no-legacy-deps"
-  NODE_VERSION="22.18.0"
-  HUGO_VERSION="0.150.1"
-  DART_SASS_VERSION = "1.77.8"
+  DART_SASS_VERSION = "1.92.1"
+  GO_VERSION = "1.25.1"
+  HUGO_VERSION = "0.150.0"
+  NODE_VERSION = "22.18.0"
+  TZ = "Europe/London"
 
 [build]
-  publish = "dist"
-  command = """\
-curl -LJO https://github.com/sass/dart-sass/releases/download/1.77.8/dart-sass-1.77.8-linux-x64.tar.gz && \
-tar -xf dart-sass-1.77.8-linux-x64.tar.gz && \
-rm dart-sass-1.77.8-linux-x64.tar.gz && \
-export PATH=/opt/build/repo/dart-sass:$PATH && \
-hugo --gc --minify -s site -d ../dist \
+publish = "public"
+# netlify build command from hugo docs to use dart sass and a fixup for slightly wrong generated css
+command = """\
+  curl -sLJO "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
+  tar -C "${HOME}/.local" -xf "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
+  rm "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
+  export PATH="${HOME}/.local/dart-sass:${PATH}" && \
+  git config core.quotepath false && \
+  hugo --gc --minify --baseURL "${URL}" -s site -d ../dist \
+  sed -e 's/mediascreen/media screen/g' -i dist/main.min.*.css \
   """
 
 [dev]
