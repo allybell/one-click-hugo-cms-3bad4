@@ -1,6 +1,9 @@
 node_modules/
 dist/
+site/hugo_stats.json
 site/data/webpack.json
+site/public
+site/resources
 /npm-debug.log
 yarn-error.log
 .netlify/

@@ -9,13 +9,8 @@ parserOptions:
 plugins: [ "import" ]
 
 extends: [
-    "plugin:react/recommended",
     "plugin:cypress/recommended"
   ]
-
-settings:
-  react:
-    version: detect
 
 rules:
   # Possible Errors

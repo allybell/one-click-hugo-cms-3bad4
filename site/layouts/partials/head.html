@@ -24,14 +24,40 @@
 			}
 		}
 	</style>
-	{{ $stylesheet := .Site.Data.webpack.main }}
-	{{ with $stylesheet.css }}
-	<link href="{{ relURL . }}" rel="stylesheet">
+
+	{{ with resources.Get "sass/main.scss" }}
+	{{ $opts := dict
+	"enableSourceMap" hugo.IsDevelopment
+	"outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
+	"targetPath" "main.css"
+	"transpiler" "dartsass"
+	}}
+	{{ with . | toCSS $opts | postCSS }}
+	{{ if hugo.IsDevelopment }}
+	<link rel="stylesheet" href="{{ .RelPermalink }}">
+	{{ else }}
+	{{ with . | minify | fingerprint | resources.PostProcess }}
+	<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+	{{ end }}
+	{{ end }}
+	{{ end }}
 	{{ end }}
 
-	{{ $script := .Site.Data.webpack.main }}
-	{{ with $script.js }}
-	<script defer src="{{ relURL . }}"></script>
+	{{ with resources.Get "js/main.js" }}
+	{{$opts := dict
+	"minify" (not hugo.IsDevelopment)
+	"sourceMap" (cond hugo.IsDevelopment "external" "")
+	"targetPath" "js/main.js"
+	}}
+	{{ with . | js.Build $opts }}
+	{{ if hugo.IsDevelopment }}
+	<script defer src="{{ .RelPermalink }}"></script>
+	{{ else }}
+	{{ with . | fingerprint }}
+	<script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+	{{ end }}
+	{{ end }}
+	{{ end }}
 	{{ end }}
 
 	<meta charset="utf-8">
