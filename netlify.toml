@@ -1,13 +1,19 @@
 [build.environment]
   NETLIFY_USE_YARN = "false"
   NPM_FLAGS = "--no-legacy-deps"
+  NODE_VERSION="22.18.0"
+  HUGO_VERSION="0.150.1"
+  DART_SASS_VERSION = "1.77.8"
 
 [build]
-  command = "npm run build"
   publish = "dist"
-
-[context.deploy-preview]
-  command = "npm run build:preview"
+  command = """\
+curl -LJO https://github.com/sass/dart-sass/releases/download/1.77.8/dart-sass-1.77.8-linux-x64.tar.gz && \
+tar -xf dart-sass-1.77.8-linux-x64.tar.gz && \
+rm dart-sass-1.77.8-linux-x64.tar.gz && \
+export PATH=/opt/build/repo/dart-sass:$PATH && \
+hugo --gc --minify -s site -d ../dist \
+  """
 
 [dev]
   framework = "hugo"
