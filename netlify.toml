@@ -1,6 +1,4 @@
 [build.environment]
-  NETLIFY_USE_YARN = "false"
-  NPM_FLAGS = "--no-legacy-deps"
   DART_SASS_VERSION = "1.92.1"
   GO_VERSION = "1.25.1"
   HUGO_VERSION = "0.150.0"
@@ -17,7 +15,7 @@
   export PATH="${HOME}/.local/dart-sass:${PATH}" && \
   git config core.quotepath false && \
   hugo --gc --minify --baseURL "${URL}" -s site -d ../dist && \
-  sed -e 's/mediascreen/media screen/g' -ibak dist/main.min.*.css \
+  echo done \
   """
 
 [dev]

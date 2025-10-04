@@ -21,5 +21,10 @@ module.exports = {
       })
       : null,
     require('autoprefixer'),
+    require('postcss-autocorrect')({
+      providedList: [
+        { "@media screen": ['@mediascreen'] },
+      ]
+    }),
   ]
 };
