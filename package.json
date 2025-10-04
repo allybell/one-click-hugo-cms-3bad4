@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint site/assets cypress",
-    "start": "hugo server -d ../dist -s site -w -p 3000 --minify",
+    "start": "hugo server -d ../dist -s site -w -p 3000 --minify --watch",
     "build": "hugo -d ../dist -s site --minify --cleanDestinationDir",
     "cypress:open": "cypress open --e2e",
     "cypress:run": "cypress run --e2e"
