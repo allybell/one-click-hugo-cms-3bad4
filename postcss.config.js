@@ -5,8 +5,7 @@ module.exports = {
       browsers: "last 2 versions"
     }),
     require("postcss-custom-media"),
-    process.env.HUGO_ENVIRONMENT !== 'development'
-      ? require('@fullhuman/postcss-purgecss').default({
+    require('@fullhuman/postcss-purgecss').default({
         content: ['site/hugo_stats.json'],
         defaultExtractor: content => {
           const els = JSON.parse(content).htmlElements;
@@ -18,13 +17,9 @@ module.exports = {
         },
         // https://purgecss.com/safelisting.html
         safelist: ["menu-open"]
-      })
-      : null,
-    require('autoprefixer'),
-    require('postcss-autocorrect')({
-      providedList: [
-        { "@media screen": ['@mediascreen'] },
-      ]
+      }),
+    require('autoprefixer')({
+      browsers: ['last 2 versions']
     }),
   ]
 };
